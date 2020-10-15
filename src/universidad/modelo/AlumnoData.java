@@ -45,6 +45,10 @@ public class AlumnoData {
         }
        
     }
+    //public Alumno buscarAlumno(int id);
+    //public List<Alumno> obtenerAlumnos();
+    // public void actualizarAlumno(Alumno alumno);
+    //public void borrarAlumno(int id);
     
     
 }

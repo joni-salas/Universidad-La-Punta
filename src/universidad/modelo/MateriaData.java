@@ -42,4 +42,8 @@ public class MateriaData {
         }
        
     }
+     //public Materia buscarMateria(int id);
+    //public List<Materia> obtenerMaterias();
+    // public void actualizarMateria(Materia materia);
+    //public void borrarMarteria(int id);
 }

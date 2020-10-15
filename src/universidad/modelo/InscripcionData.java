@@ -42,5 +42,11 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null,"Error al guardar Inscripcion");
         }
        
-    }   
+    }
+      //public Inscripcion buscarInscripcion(int id);
+    //public List<Inscripcion> obtenerInscripcion();
+    // public void actualizarInscripcion(Inscripcion inscripcion);
+    //public void borrarInscripcion(int id);
+
+    
 }

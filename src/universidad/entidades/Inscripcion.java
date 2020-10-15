@@ -1,10 +1,7 @@
 
 package universidad.entidades;
 
-/**
- *
- * @author joni
- */
+
 public class Inscripcion {
     private int idInscripcion;
     Alumno alumno;
@@ -63,6 +60,9 @@ public class Inscripcion {
         this.nota = nota;
     }
     
-    
+    @Override
+    public String toString(){
+        return getIdInscripcion()+" "+getAlumno().getIdAlumno()+" "+getMateria().getIdMateria();
+    }
     
 }
