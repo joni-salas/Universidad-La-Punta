@@ -21,6 +21,10 @@ public class MateriaData {
         
         try{
         
+            
+            
+            
+            
         PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1,materia.getNombreMateria() );
         
