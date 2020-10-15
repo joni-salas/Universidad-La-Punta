@@ -9,7 +9,7 @@ import java.util.Date;
  * @author joni
  */
 public class Alumno {
-    private int idInscripcion;
+    private int idAlumno;
     private String nombreAlumno;
     private LocalDate fnAlumno;
     private boolean activo;
@@ -22,16 +22,18 @@ public class Alumno {
         this.fnAlumno = fnAlumno;
         this.activo = activo;
     }
-    
+    public Alumno(int idInscripcion){
+        this.idAlumno = idInscripcion;
+    }
     public Alumno(int idInscripcion, String nombreAlumno, LocalDate fnAlumno, boolean activo) {
-        this.idInscripcion = idInscripcion;
+        this.idAlumno = idInscripcion;
         this.nombreAlumno = nombreAlumno;
         this.fnAlumno = fnAlumno;
         this.activo = activo;
     }
 
-    public int getIdInscripcion() {
-        return idInscripcion;
+    public int getIdAlumno() {
+        return idAlumno;
     }
 
     public String getNombreAlumno() {
@@ -46,8 +48,8 @@ public class Alumno {
         return activo;
     }
 
-    public void setIdInscripcion(int idInscripcion) {
-        this.idInscripcion = idInscripcion;
+    public void setIdAlumno(int idInscripcion) {
+        this.idAlumno = idInscripcion;
     }
 
     public void setNombreAlumno(String nombreAlumno) {

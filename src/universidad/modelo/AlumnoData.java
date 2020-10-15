@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package universidad.modelo;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
 import universidad.entidades.Alumno;
 
-/**
- *
- * @author Alumno
- */
+
 public class AlumnoData {
 
     private Connection con;
@@ -39,7 +32,7 @@ public class AlumnoData {
         ResultSet rs = ps.getGeneratedKeys();
 
             if (rs.next()) {
-                alumno.setIdInscripcion(rs.getInt(1));
+                alumno.setIdAlumno(rs.getInt(1));
             } else {
                 JOptionPane.showMessageDialog(null,"No puedo obtener id");
             }
