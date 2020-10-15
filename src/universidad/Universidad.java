@@ -17,8 +17,7 @@ public class Universidad {
         
         
         Conexion c =new Conexion();
-        
-        Connection con=c.getConnection();
+        Connection con=c.getConnection(); 
     }
     
 }
