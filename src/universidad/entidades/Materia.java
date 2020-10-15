@@ -38,6 +38,9 @@ public class Materia {
     public void setNombreMateria(String nombreMateria) {
         this.nombreMateria = nombreMateria;
     }
-    
+    @Override
+    public String toString(){
+        return getIdMateria()+" "+getNombreMateria();
+    }
     
 }
