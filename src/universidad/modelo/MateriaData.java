@@ -141,7 +141,7 @@ public class MateriaData {
 
     //JOptionPane.showMessageDialog(null, "Hello World");
     //JOptionPane.showMessageDialog(null, "Mensaje dentro de la ventana", "Mensaje en la barra de titulo", JOptionPane.WARNING_MESSAGE);
-    //  String name = JOptionPane.showInputDialog("Escribe tu nombre");
+    //String name = JOptionPane.showInputDialog("Escribe tu nombre");
     //JOptionPane.showInputDialog(Componente padre, Mensaje, Titulo, Tipo De Mensaje (WARNING,ERROR,ETC.) );
-     // String respuesta = JOptionPane.showInputDialog(null, "Escriba nuevamente su nombre", "Error!", JOptionPane.ERROR_MESSAGE);
+    //String respuesta = JOptionPane.showInputDialog(null, "Escriba nuevamente su nombre", "Error!", JOptionPane.ERROR_MESSAGE);
 
