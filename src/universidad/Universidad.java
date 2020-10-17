@@ -12,12 +12,16 @@ public class Universidad {
 
 
         Conexion c =new Conexion();
-         //('Juan Perez', '1983-4-8', '1');
-        Alumno nahu=new Alumno(3);
+        MateriaData md= new MateriaData(c);
+       // Alumno nahu=new Alumno(3);
         Materia mat=new Materia(2);
-        AlumnoData ad=new AlumnoData(c);
-         MateriaData md=new MateriaData(c);
-        InscripcionData id=new InscripcionData(c);
+        Materia alg = new Materia(2,"algebra");
+       // AlumnoData ad=new AlumnoData(c);
+       // InscripcionData id=new InscripcionData(c);
+       // System.out.println(md.obtenerMaterias()); 
+        //md.actualizarMateria(alg);
+        md.borrarMateria(3);
+        md.obtenerMaterias();
     }
     
 }
