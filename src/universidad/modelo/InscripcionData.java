@@ -37,9 +37,10 @@ public class InscripcionData {
             } else {
                 JOptionPane.showMessageDialog(null,"No puedo obtener id");
             }
-       
+       rs.close();
+       ps.close();
        // con.close();
-        JOptionPane.showMessageDialog(null,"Inscripcion guardada con exito");
+       // JOptionPane.showMessageDialog(null,"Inscripcion guardada con exito");
         }catch(SQLException e){
         
             JOptionPane.showMessageDialog(null,"Error al guardar inscripcion");
@@ -59,8 +60,10 @@ public class InscripcionData {
                 ins.getAlumno().setIdAlumno(rs.getInt(2));
                 ins.getMateria().setIdMateria(rs.getInt(3));
                 ins.setNota(rs.getDouble(4));
-                JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
+            //    JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
             }
+            rs.close();
+            ps.close();
            // con.close();
         }catch(HeadlessException | SQLException e){
             JOptionPane.showMessageDialog(null, "No se puedo encontrar la inscripcion", "Error", JOptionPane.WARNING_MESSAGE);
@@ -82,8 +85,10 @@ public class InscripcionData {
                 inscri.setNota(rs.getDouble(4));
                 ins.add(inscri);
             }
+               rs.close();
+               ps.close();
           //  con.close();
-            JOptionPane.showMessageDialog(null, "Inscripciones encontradas");
+          //  JOptionPane.showMessageDialog(null, "Inscripciones encontradas");
         }catch(HeadlessException | SQLException e){
             JOptionPane.showMessageDialog(null, "No se puedo encontrar la inscripcion", "Error", JOptionPane.WARNING_MESSAGE);
         }
@@ -96,7 +101,8 @@ public class InscripcionData {
         ps.setDouble(1,inscripcion.getNota());
         ps.setInt(2,inscripcion.getIdInscripcion());
         ps.executeUpdate();
-        JOptionPane.showMessageDialog(null, "Inscripciones actualizada");    
+        //JOptionPane.showMessageDialog(null, "Inscripciones actualizada");
+        ps.close();
        // con.close();
         }catch(HeadlessException | SQLException e){
              JOptionPane.showMessageDialog(null, "No se pudo actulizar inscripcion", "Error", JOptionPane.WARNING_MESSAGE);
@@ -108,7 +114,8 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1,id);
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Inscripciones Eliminada");  
+           // JOptionPane.showMessageDialog(null, "Inscripciones Eliminada");  
+            ps.close();
         }catch(HeadlessException | SQLException e){
              JOptionPane.showMessageDialog(null, "No se pudo eliminar inscripcion", "Error", JOptionPane.WARNING_MESSAGE);
         }
