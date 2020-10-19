@@ -37,9 +37,9 @@ public class AlumnoData {
             } else {
                 JOptionPane.showMessageDialog(null, "No puedo obtener id");
             }
-
-            //con.close();
-            JOptionPane.showMessageDialog(null, "Alumno guardado con exito");
+            rs.close();
+            con.close();
+           // JOptionPane.showMessageDialog(null, "Alumno guardado con exito");
         } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, "Error al guardar Alumno");
@@ -62,9 +62,10 @@ public class AlumnoData {
                 alumno.setNombreAlumno(rs.getString("nombre_alumno"));
                 alumno.setFnAlumno(rs.getDate("fn_alumno").toLocalDate());
                 alumno.setActivo(rs.getBoolean("activo"));
-                JOptionPane.showMessageDialog(null, "Alumno encontrado");
+          //      JOptionPane.showMessageDialog(null, "Alumno encontrado");
             }
-            //ps.close();
+            rs.close();
+            ps.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,9 +93,10 @@ public class AlumnoData {
                 alumno.setActivo(rs.getBoolean("activo"));
                 System.out.println(alumno.getNombreAlumno());
                 alumnos.add(alumno);
-                JOptionPane.showMessageDialog(null, "Alumnos encontrados");
+          //      JOptionPane.showMessageDialog(null, "Alumnos encontrados");
             }
-            //ps.close();
+            rs.close();
+            ps.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,9 +118,9 @@ public class AlumnoData {
             ps.setInt(4, alumno.getIdAlumno());
 
             ps.executeUpdate();
-
+            ps.close();
             //con.close();
-            JOptionPane.showMessageDialog(null, "Alumno actualizado con exito");
+      //      JOptionPane.showMessageDialog(null, "Alumno actualizado con exito");
         } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, "Error al actualizar Alumno");
@@ -134,8 +136,8 @@ public class AlumnoData {
             ps.setInt(1, id);
             ps.executeUpdate();
             
-            //ps.close();
-            JOptionPane.showMessageDialog(null, "Alumno borrado con exito");
+            ps.close();
+         //   JOptionPane.showMessageDialog(null, "Alumno borrado con exito");
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al borrar Alumno");
