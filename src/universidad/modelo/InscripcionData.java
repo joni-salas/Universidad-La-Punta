@@ -11,6 +11,7 @@ import universidad.entidades.Inscripcion;
 
 public class InscripcionData {
        private Connection con;
+       
     
     public InscripcionData(Conexion conexion){
     
@@ -18,12 +19,34 @@ public class InscripcionData {
     }
     
     public void guardarInscripcion(Inscripcion inscripcion){
-    
+        int n=0;
+        
+       /* try{
+            String bus="SELECT * FROM inscripcion where inscripcion.id_alumno=?, inscripcion.id_materia=?";
+        PreparedStatement prs = con.prepareStatement(bus);
+        prs.setInt(1, inscripcion.getAlumno().getIdAlumno());
+        prs.setInt(2, inscripcion.getMateria().getIdMateria());
+        prs.executeQuery();
+        ResultSet res = prs.getResultSet();
+        if(res.next()==false){n++;}
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"alumno y materia ya inscripto anteriormente"); }
+        if(n>0){*/
+       List<Inscripcion> insA =new ArrayList<>();
+       insA =obtenerInscripcion();
+        try{
+
+            for(int x=0;x<insA.size();x++){
+
+                Inscripcion inscri=insA.get(x);
+                if(inscri.getAlumno().getIdAlumno()==inscripcion.getAlumno().getIdAlumno() && 
+                        inscri.getMateria().getIdMateria()==inscripcion.getMateria().getIdMateria()){
+                    n++;
+                }
+            }
+            if(n==0){
         String sql="INSERT into inscripcion (id_alumno, id_materia, calificacion) "
                 + "VALUES(?, ?, ?);";
-        
-        try{
-            
         PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1,inscripcion.getAlumno().getIdAlumno());
         ps.setInt(2,inscripcion.getMateria().getIdMateria());
@@ -40,13 +63,18 @@ public class InscripcionData {
        rs.close();
        ps.close();
        // con.close();
-       // JOptionPane.showMessageDialog(null,"Inscripcion guardada con exito");
+       JOptionPane.showMessageDialog(null,"Inscripcion guardada con exito");
+        }else{ JOptionPane.showMessageDialog(null,"alumno y materia ya inscripto anteriormente"); }
         }catch(SQLException e){
         
             JOptionPane.showMessageDialog(null,"Error al guardar inscripcion");
         }
-       
     }
+
+        
+        
+       
+    
     public Inscripcion buscarInscripcion(int id){
         Inscripcion ins=null;
         String sql="SELECT * FROM inscripcion WHERE inscripcion.id_inscripcion=?";
@@ -55,10 +83,12 @@ public class InscripcionData {
             ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
-                ins=new Inscripcion(new Alumno(),new Materia());
+                ins=new Inscripcion();
                 ins.setIdInscripcion(rs.getInt(1));
-                ins.getAlumno().setIdAlumno(rs.getInt(2));
-                ins.getMateria().setIdMateria(rs.getInt(3));
+                Alumno a=buscarAlumno(rs.getInt(2));
+                Materia m=buscarMateria(rs.getInt(3));
+                ins.setAlumno(a);
+                ins.setMateria(m);
                 ins.setNota(rs.getDouble(4));
             //    JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
             }
@@ -120,6 +150,73 @@ public class InscripcionData {
              JOptionPane.showMessageDialog(null, "No se pudo eliminar inscripcion", "Error", JOptionPane.WARNING_MESSAGE);
         }
     
+    }
+        public Alumno buscarAlumno(int id){
+            Conexion c =new Conexion();
+            AlumnoData ad = new AlumnoData(c);
+            return ad.buscarAlumno(id);
+            
+    }
+            public Materia buscarMateria(int id){
+            Conexion c =new Conexion();
+            MateriaData md = new MateriaData(c);
+            return md.buscarMateria(id);
+            
+    }
+             public List<Inscripcion> buscarInscripcionXAlumno(int id){
+        Inscripcion ins=null;
+        ArrayList<Inscripcion> insL=new ArrayList<>();
+        String sql="SELECT * FROM inscripcion WHERE inscripcion.id_alumno=?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                ins=new Inscripcion();
+                ins.setIdInscripcion(rs.getInt(1));
+                Alumno a=buscarAlumno(rs.getInt(2));
+                Materia m=buscarMateria(rs.getInt(3));
+                ins.setAlumno(a);
+                ins.setMateria(m);
+                ins.setNota(rs.getDouble(4));
+            //    JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
+                insL.add(ins);//lo agrego ala lista
+            }
+            rs.close();
+            ps.close();
+           // con.close();
+        }catch(HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(null, "No se puedo encontrar la inscripcion", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        return insL;//devuelvo la lista
+    }
+             
+   public List<Inscripcion> buscarInscripcionXMateria(int id){
+        Inscripcion ins=null;
+        ArrayList<Inscripcion> insL=new ArrayList<>();
+        String sql="SELECT * FROM inscripcion WHERE inscripcion.id_materia=?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                ins=new Inscripcion();
+                ins.setIdInscripcion(rs.getInt(1));
+                Alumno a=buscarAlumno(rs.getInt(2));
+                Materia m=buscarMateria(rs.getInt(3));
+                ins.setAlumno(a);
+                ins.setMateria(m);
+                ins.setNota(rs.getDouble(4));
+            //    JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
+                insL.add(ins);//lo agrego ala lista
+            }
+            rs.close();
+            ps.close();
+           // con.close();
+        }catch(HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(null, "No se puedo encontrar la inscripcion", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        return insL;//devuelvo la lista
     }
 
     
