@@ -12,7 +12,7 @@ public class Universidad {
 
 
         Conexion c =new Conexion();
-        //MateriaData md= new MateriaData(c);
+        MateriaData md= new MateriaData(c);
         //Materia mat=new Materia(2);
         //Materia alg = new Materia(2,"algebra");
         //md.actualizarMateria(alg);
@@ -20,6 +20,8 @@ public class Universidad {
         //md.obtenerMaterias();
         // System.out.println(md.obtenerMaterias());
         //InscripcionData id=new InscripcionData(c);
+        Materia mat=new Materia("quimica");
+        md.guardarMateria(mat);
          
         
         

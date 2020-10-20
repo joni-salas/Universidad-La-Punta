@@ -48,7 +48,7 @@ public class MateriaData {
     }
     public Materia buscarMateria(int id){
         Materia materia= null;
-        String sql ="SELECT * FROM `materia` WHERE id_materia=?";
+        String sql ="SELECT * FROM materia WHERE id_materia=?";
         
         try{
            PreparedStatement ps = con.prepareStatement(sql); 
@@ -77,7 +77,7 @@ public class MateriaData {
     public List<Materia> obtenerMaterias(){
         Materia materia=null;
         List<Materia> materias= new ArrayList<>();
-        String sql = "SELECT * FROM `materia`";
+        String sql = "SELECT * FROM materia";
         
         try{
           PreparedStatement ps= con.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class MateriaData {
     
     public void actualizarMateria(Materia materia){
         try{
-            String sql = "UPDATE `materia` SET `nombre_materia` =? WHERE id_materia=?" ;
+            String sql = "UPDATE materia SET nombre_materia =? WHERE id_materia=?" ;
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setString(1, materia.getNombreMateria());
             ps.setInt(2, materia.getIdMateria());
@@ -120,7 +120,7 @@ public class MateriaData {
     
     public void borrarMateria(int id){
         
-        String sql = "DELETE FROM `materia` WHERE `id_materia`=?";
+        String sql = "DELETE FROM materia WHERE id_materia=?";
         
         try{
             PreparedStatement ps=con.prepareStatement(sql);
