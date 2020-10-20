@@ -123,6 +123,7 @@ public class InscripcionGuardarVistas extends javax.swing.JFrame {
             }
         });
 
+        CBInscripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inscripcion" }));
         CBInscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBInscripcionActionPerformed(evt);
@@ -214,19 +215,19 @@ public class InscripcionGuardarVistas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CBAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CBMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TXTIdAlumno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel2)
-                        .addGap(19, 19, 19))
+                        .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TXTIdMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
-                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TXTIdInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -241,19 +242,26 @@ public class InscripcionGuardarVistas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CBAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBAlumnoActionPerformed
+        if(CBAlumno.getSelectedItem().toString().equalsIgnoreCase("Alumno")){
+            TXTIdAlumno.setText("");
+        }else{
         String arr[]=CBAlumno.getSelectedItem().toString().split("-");
         String id =arr[0];
         
         TXTIdAlumno.setText(id);
-        
+        }
     }//GEN-LAST:event_CBAlumnoActionPerformed
 
     private void CBMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMateriaActionPerformed
         // TODO add your handling code here:
+        if(CBMateria.getSelectedItem().toString().equalsIgnoreCase("Materia")){
+            TXTIdMateria.setText("");
+        }else{
         String arr[]=CBMateria.getSelectedItem().toString().split("-");
         String id =arr[0];
         
         TXTIdMateria.setText(id);
+        }
     }//GEN-LAST:event_CBMateriaActionPerformed
 
     private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
@@ -262,7 +270,9 @@ public class InscripcionGuardarVistas extends javax.swing.JFrame {
        guardar.setVisible(true);
         CBInscripcion.setVisible(false);
         borrar.setVisible(false);
-        
+        CBMateria.setSelectedIndex(0);
+        CBAlumno.setSelectedIndex(0);
+        TXTIdInscripcion.setText("");
      
      
     }//GEN-LAST:event_BGuardarActionPerformed
@@ -274,25 +284,34 @@ public class InscripcionGuardarVistas extends javax.swing.JFrame {
         CBMateria.setVisible(false);
         borrar.setVisible(true);
         guardar.setVisible(false);
+        CBInscripcion.setSelectedIndex(0);
         
     }//GEN-LAST:event_BBorrarActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
+        if(TXTIdAlumno.getText().equalsIgnoreCase("")|| TXTIdMateria.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null,"Elija correctamente el alumno y la materia");
+        }else{
      int idAlumno=Integer.parseInt(TXTIdAlumno.getText());
      int idMateria=Integer.parseInt(TXTIdMateria.getText());
-
      Alumno al=new Alumno();
      al=ad.buscarAlumno(idAlumno);
      Materia ma=new Materia();
      ma=md.buscarMateria(idMateria);
      Inscripcion i=new Inscripcion(al,ma);
      id.guardarInscripcion(i);
-     JOptionPane.showMessageDialog(null,"Inscripcion Guardad correctamente");
+    // JOptionPane.showMessageDialog(null,"Inscripcion Guardada correctamente");
+        }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void CBInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBInscripcionActionPerformed
         // TODO add your handling code here:
+        if(CBInscripcion.getSelectedItem().toString().equalsIgnoreCase("Inscripcion")){
+          TXTIdInscripcion.setText("");
+        TXTIdAlumno.setText("");
+        TXTIdMateria.setText("");
+    }else{
         String arr[]=CBInscripcion.getSelectedItem().toString().split("-");
         String iii =arr[0];
         int x=Integer.parseInt(iii);
@@ -301,13 +320,17 @@ public class InscripcionGuardarVistas extends javax.swing.JFrame {
         TXTIdInscripcion.setText(String.valueOf(x));
         TXTIdAlumno.setText(String.valueOf(i.getAlumno().getIdAlumno()));
         TXTIdMateria.setText(String.valueOf(i.getMateria().getIdMateria()));
-        
+            }
     }//GEN-LAST:event_CBInscripcionActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         // TODO add your handling code here:
+        if(TXTIdInscripcion.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null,"Selecione correctamente la inscripcion");
+        }else{
         id.borrarInscripcion(Integer.parseInt(TXTIdInscripcion.getText()));
         JOptionPane.showMessageDialog(null,"Inscripcion borrada correctamente");
+        }
     }//GEN-LAST:event_borrarActionPerformed
 
     private void TXTIdAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTIdAlumnoActionPerformed
@@ -317,11 +340,11 @@ public class InscripcionGuardarVistas extends javax.swing.JFrame {
     private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
         // TODO add your handling code here:
         
-       /* CBAlumno.removeAllItems();
-        CBMateria.removeAllItems();
+        //CBAlumno.removeAllItems();
+       // CBMateria.removeAllItems();
         CBInscripcion.removeAllItems();
-        */  List<Alumno> al=new ArrayList<>();//en esta lista obtengo todos los alumnos
-        al=ad.obtenerAlumnos();
+        //  List<Alumno> al=new ArrayList<>();//en esta lista obtengo todos los alumnos
+       // al=ad.obtenerAlumnos();
        /* for(int x=0;x<al.size();x++){//cargo los item del combo box con el for
             Alumno a=al.get(x);
             String stri= String.valueOf(a.getIdAlumno())+"-"+a.getNombreAlumno();//le pongo un guion para separar y luego con el split guar el id
@@ -343,6 +366,7 @@ public class InscripcionGuardarVistas extends javax.swing.JFrame {
             String stri= String.valueOf(a.getIdInscripcion()+"-"+alu.getNombreAlumno()+" "+mat.getNombreMateria());
             CBInscripcion.addItem(stri);
         }
+        JOptionPane.showMessageDialog(null,"Inscripcion actualizada");
     
     }//GEN-LAST:event_BActualizarActionPerformed
 /*public boolean validar(String cadena) {
