@@ -110,8 +110,10 @@ public class InscripcionData {
             while(rs.next()){
                 inscri=new Inscripcion(new Alumno(),new Materia());
                 inscri.setIdInscripcion(rs.getInt(1));
-                inscri.getAlumno().setIdAlumno(rs.getInt(2));
-                inscri.getMateria().setIdMateria(rs.getInt(3));
+                Alumno a=buscarAlumno(rs.getInt(2));
+                Materia m=buscarMateria(rs.getInt(3));
+                inscri.setAlumno(a);
+                inscri.setMateria(m);
                 inscri.setNota(rs.getDouble(4));
                 ins.add(inscri);
             }

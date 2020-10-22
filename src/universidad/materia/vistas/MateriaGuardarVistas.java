@@ -76,6 +76,7 @@ public class MateriaGuardarVistas extends javax.swing.JFrame {
         });
 
         Brefresh.setBackground(new java.awt.Color(255, 255, 255));
+        Brefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidad/imagenes/refresh bueno.png"))); // NOI18N
         Brefresh.setText("Refresh");
         Brefresh.setMargin(new java.awt.Insets(5, 15, 5, 0));
         Brefresh.setMaximumSize(new java.awt.Dimension(20, 20));
@@ -99,10 +100,10 @@ public class MateriaGuardarVistas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LBNoombreM)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
-                                .addComponent(Brefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(Brefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LBNoombreM))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
