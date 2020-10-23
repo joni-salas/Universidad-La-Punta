@@ -39,7 +39,7 @@ public class MateriaData {
         rs.close();
         ps.close();
         //con.close();
-       // JOptionPane.showMessageDialog(null,"Materia guardada con exito");
+        JOptionPane.showMessageDialog(null,"Materia guardada con exito");
         }catch(SQLException e){
         
             JOptionPane.showMessageDialog(null,"Error al guardar Materia");
@@ -61,7 +61,7 @@ public class MateriaData {
                materia.setIdMateria(rs.getInt("id_materia"));
                materia.setNombreMateria(rs.getString("nombre_materia"));
                
-         //      JOptionPane.showMessageDialog(null, "Materia encontrada");
+               JOptionPane.showMessageDialog(null, "Materia encontrada");
            }
            
             rs.close();
@@ -89,7 +89,7 @@ public class MateriaData {
                materia.setNombreMateria(rs.getString(2));
                materias.add(materia);
             }
-         //   JOptionPane.showMessageDialog(null, "Materias Encontradas");
+            JOptionPane.showMessageDialog(null, "Materias Encontradas");
             rs.close();
             ps.close();
             //con.close();
@@ -108,7 +108,7 @@ public class MateriaData {
             ps.setInt(2, materia.getIdMateria());
             
             ps.executeUpdate();
-          //  JOptionPane.showMessageDialog(null, "Materia Actualizada");
+            JOptionPane.showMessageDialog(null, "Materia Actualizada");
             
             ps.close();
             //con.close();
@@ -126,7 +126,7 @@ public class MateriaData {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
-         //   JOptionPane.showMessageDialog(null, "Materia Borrada");
+            JOptionPane.showMessageDialog(null, "Materia Borrada");
             ps.close();
             //con.close();
         }

@@ -90,7 +90,7 @@ public class InscripcionData {
                 ins.setAlumno(a);
                 ins.setMateria(m);
                 ins.setNota(rs.getDouble(4));
-            //    JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
+                JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
             }
             rs.close();
             ps.close();
@@ -120,7 +120,7 @@ public class InscripcionData {
                rs.close();
                ps.close();
           //  con.close();
-          //  JOptionPane.showMessageDialog(null, "Inscripciones encontradas");
+            JOptionPane.showMessageDialog(null, "Inscripciones encontradas");
         }catch(HeadlessException | SQLException e){
             JOptionPane.showMessageDialog(null, "No se puedo encontrar la inscripcion", "Error", JOptionPane.WARNING_MESSAGE);
         }
@@ -133,7 +133,7 @@ public class InscripcionData {
         ps.setDouble(1,inscripcion.getNota());
         ps.setInt(2,inscripcion.getIdInscripcion());
         ps.executeUpdate();
-        //JOptionPane.showMessageDialog(null, "Inscripciones actualizada");
+        JOptionPane.showMessageDialog(null, "Inscripciones actualizada");
         ps.close();
        // con.close();
         }catch(HeadlessException | SQLException e){
@@ -146,7 +146,7 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1,id);
             ps.executeUpdate();
-           // JOptionPane.showMessageDialog(null, "Inscripciones Eliminada");  
+            JOptionPane.showMessageDialog(null, "Inscripciones Eliminada");  
             ps.close();
         }catch(HeadlessException | SQLException e){
              JOptionPane.showMessageDialog(null, "No se pudo eliminar inscripcion", "Error", JOptionPane.WARNING_MESSAGE);
@@ -181,7 +181,7 @@ public class InscripcionData {
                 ins.setAlumno(a);
                 ins.setMateria(m);
                 ins.setNota(rs.getDouble(4));
-            //    JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
+                JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
                 insL.add(ins);//lo agrego ala lista
             }
             rs.close();
@@ -209,7 +209,7 @@ public class InscripcionData {
                 ins.setAlumno(a);
                 ins.setMateria(m);
                 ins.setNota(rs.getDouble(4));
-            //    JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
+                JOptionPane.showMessageDialog(null, "Inscripcion encontrada");
                 insL.add(ins);//lo agrego ala lista
             }
             rs.close();
