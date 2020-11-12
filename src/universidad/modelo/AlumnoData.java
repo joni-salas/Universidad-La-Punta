@@ -38,8 +38,8 @@ public class AlumnoData {
                 JOptionPane.showMessageDialog(null, "No puedo obtener id");
             }
             rs.close();
-            con.close();
-            JOptionPane.showMessageDialog(null, "Alumno guardado con exito");
+            //con.close();
+           // JOptionPane.showMessageDialog(null, "Alumno guardado con exito");
         } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, "Error al guardar Alumno");
@@ -62,7 +62,7 @@ public class AlumnoData {
                 alumno.setNombreAlumno(rs.getString("nombre_alumno"));
                 alumno.setFnAlumno(rs.getDate("fn_alumno").toLocalDate());
                 alumno.setActivo(rs.getBoolean("activo"));
-                JOptionPane.showMessageDialog(null, "Alumno encontrado");
+                //JOptionPane.showMessageDialog(null, "Alumno encontrado");
             }
             rs.close();
             ps.close();
@@ -93,7 +93,7 @@ public class AlumnoData {
                 alumno.setActivo(rs.getBoolean("activo"));
                 System.out.println(alumno.getNombreAlumno());
                 alumnos.add(alumno);
-               JOptionPane.showMessageDialog(null, "Alumnos encontrados");
+              // JOptionPane.showMessageDialog(null, "Alumnos encontrados");
             }
             rs.close();
             ps.close();
@@ -120,7 +120,7 @@ public class AlumnoData {
             ps.executeUpdate();
             ps.close();
             //con.close();
-           JOptionPane.showMessageDialog(null, "Alumno actualizado con exito");
+           //JOptionPane.showMessageDialog(null, "Alumno actualizado con exito");
         } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, "Error al actualizar Alumno");
@@ -137,7 +137,7 @@ public class AlumnoData {
             ps.executeUpdate();
             
             ps.close();
-            JOptionPane.showMessageDialog(null, "Alumno borrado con exito");
+           // JOptionPane.showMessageDialog(null, "Alumno borrado con exito");
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al borrar Alumno");
