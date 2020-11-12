@@ -44,12 +44,13 @@ public class Universidad {
         //mat= md.buscarMateria(2);
         //Inscripcion ins = new Inscripcion(nahuel,mat);
         Inscripcion ins=new Inscripcion();
+      //  System.out.println(id.obtenerMateriasCursadas(1));
        // ins=id.buscarInscripcion(5);
     //id.guardarInscripcion(ins);
        // ins.setNota(10);
         //id.actualizarInscripcion(ins);
         //ins=id.buscarInscripcion(3);
-        id.borrarInscripcion(3);
+      //  id.borrarInscripcion(3);
             //                List<Inscripcion> arr = new ArrayList<>();
 //                arr = id.obtenerInscripcion();
 //                for (int x = 0; x < arr.size(); x++) {

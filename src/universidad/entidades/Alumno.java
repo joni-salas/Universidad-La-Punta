@@ -65,7 +65,7 @@ public class Alumno {
     }
     @Override
     public String toString(){
-        return getIdAlumno()+" "+getNombreAlumno()+" "+getFnAlumno()+" "+isActivo();
+        return getNombreAlumno()+" "+getFnAlumno();
     }
     
     

@@ -40,7 +40,7 @@ public class Materia {
     }
     @Override
     public String toString(){
-        return getIdMateria()+" "+getNombreMateria();
+        return getNombreMateria();
     }
     
 }
