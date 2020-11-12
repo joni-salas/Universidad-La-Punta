@@ -58,6 +58,14 @@ public class InscripcionCalificacion extends javax.swing.JInternalFrame {
             }
         });
 
+        jtabla = new javax.swing.JTable(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if(column==2){
+                    return true;}
+                return false;
+            }
+        };
         jtabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

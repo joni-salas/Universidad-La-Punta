@@ -14,7 +14,7 @@ import universidad.modelo.*;
  *
  * @author Hyouka
  */
-public class InscripcionGuardar extends javax.swing.JInternalFrame {
+public class InscripcionGuardar extends javax.swing.JInternalFrame  {
 
     /**
      * Creates new form InscripcionGuardar
@@ -22,7 +22,7 @@ public class InscripcionGuardar extends javax.swing.JInternalFrame {
     AlumnoData ad;
     InscripcionData id;
     private DefaultTableModel modelo=new DefaultTableModel();
-    
+
     public InscripcionGuardar() {
         initComponents();
         this.setLocation(500, 0);
@@ -31,7 +31,8 @@ public class InscripcionGuardar extends javax.swing.JInternalFrame {
         id =new InscripcionData(c);
         cargaAlumnos();
         armaCabeceraTabla();
-    }
+        }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,6 +75,12 @@ public class InscripcionGuardar extends javax.swing.JInternalFrame {
             }
         });
 
+        jtabla = new javax.swing.JTable(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         jtabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
