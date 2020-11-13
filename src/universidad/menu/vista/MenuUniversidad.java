@@ -7,6 +7,7 @@ package universidad.menu.vista;
 
 import javax.swing.JFrame;
 import universidad.inscripcion.vistas.*;
+import universidad.materia.vistas.*;
 
 /**
  *
@@ -39,6 +40,7 @@ public class MenuUniversidad extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jMenuGuardarMateria = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -66,6 +68,20 @@ public class MenuUniversidad extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Materia");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+
+        jMenuGuardarMateria.setText("Guardar Materia");
+        jMenuGuardarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGuardarMateriaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuGuardarMateria);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Inscripcion");
@@ -138,6 +154,19 @@ public class MenuUniversidad extends javax.swing.JFrame {
         escritorio.moveToFront(ic);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuGuardarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarMateriaActionPerformed
+        MateriaGuardar mg =new MateriaGuardar();
+        escritorio.removeAll();
+        escritorio.repaint();
+        mg.setVisible(true);
+        escritorio.add(mg);
+        escritorio.moveToFront(mg);
+    }//GEN-LAST:event_jMenuGuardarMateriaActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -181,6 +210,7 @@ public class MenuUniversidad extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuGuardarMateria;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
