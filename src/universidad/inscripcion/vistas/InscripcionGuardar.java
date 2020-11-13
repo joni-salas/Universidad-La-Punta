@@ -6,6 +6,7 @@
 package universidad.inscripcion.vistas;
 
 import java.util.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidad.entidades.*;
 import universidad.modelo.*;
@@ -25,7 +26,7 @@ public class InscripcionGuardar extends javax.swing.JInternalFrame  {
 
     public InscripcionGuardar() {
         initComponents();
-        this.setLocation(500, 0);
+        this.setLocation(450, 100);
         Conexion c = new Conexion();
         ad=new AlumnoData(c);
         id =new InscripcionData(c);
@@ -92,6 +93,7 @@ public class InscripcionGuardar extends javax.swing.JInternalFrame  {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtabla);
 
         jbInscribir.setText("Inscribir");
@@ -209,11 +211,12 @@ public class InscripcionGuardar extends javax.swing.JInternalFrame  {
             
             Inscripcion i=new Inscripcion(a,m,0);
             
-            id.guardarInscripcion(i);
-            
-            borraFilasTabla();
-            cargaDatosNoInscriptas();
-            
+           int x =JOptionPane.showConfirmDialog(this, "Desea guardar la inscripcion?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+           if(x== JOptionPane.YES_OPTION){
+                id.guardarInscripcion(i);
+                borraFilasTabla();
+                cargaDatosNoInscriptas();
+           } 
           
         
         }
@@ -229,10 +232,12 @@ public class InscripcionGuardar extends javax.swing.JInternalFrame  {
                         
             int idMateria=(Integer)modelo.getValueAt(filaSeleccionada,0);
             
-            
-            id.borrarCursadaDeUnaMateriaDeunAlumno(a.getIdAlumno(), idMateria);
-            borraFilasTabla();
-            cargaDatosInscriptas();
+            int x =JOptionPane.showConfirmDialog(this, "Esta seguro?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(x== JOptionPane.YES_OPTION){
+                id.borrarCursadaDeUnaMateriaDeunAlumno(a.getIdAlumno(), idMateria);
+                borraFilasTabla();
+                cargaDatosInscriptas();
+            }
         }
     }//GEN-LAST:event_jbAnularActionPerformed
 

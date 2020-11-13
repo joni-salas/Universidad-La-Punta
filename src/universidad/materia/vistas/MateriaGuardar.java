@@ -24,7 +24,7 @@ public class MateriaGuardar extends javax.swing.JInternalFrame {
         initComponents();
         md= new MateriaData(c);
         initComponents();
-        //this.setLocation(500, 0);
+        this.setLocation(450, 100);
         Conexion c = new Conexion();
         armaCabeceraTabla();
         modelo.isCellEditable(0, 1);
@@ -50,6 +50,7 @@ public class MateriaGuardar extends javax.swing.JInternalFrame {
         jTableGuardarMateria = new javax.swing.JTable();
         jButtonSalir = new javax.swing.JButton();
         jlbtitulo = new javax.swing.JLabel();
+        jButtonborrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -104,6 +105,14 @@ public class MateriaGuardar extends javax.swing.JInternalFrame {
         jlbtitulo.setForeground(new java.awt.Color(255, 0, 0));
         jlbtitulo.setText("Guardar Materia");
 
+        jButtonborrar.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
+        jButtonborrar.setText("Borrar");
+        jButtonborrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonborrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,8 +129,12 @@ public class MateriaGuardar extends javax.swing.JInternalFrame {
                             .addComponent(jButtonGuardar))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButtonSalir)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(216, 216, 216)
+                                    .addComponent(jButtonborrar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonSalir))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(165, 165, 165)
@@ -141,7 +154,9 @@ public class MateriaGuardar extends javax.swing.JInternalFrame {
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonSalir)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonborrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -182,7 +197,21 @@ public class MateriaGuardar extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-    public void armaCabeceraTabla(){
+    private void jButtonborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonborrarActionPerformed
+        int filaSelec = jTableGuardarMateria.getSelectedRow();
+        
+        if(filaSelec!=-1){
+            int m=(Integer) modelo.getValueAt(filaSelec, 0);
+            int x =JOptionPane.showConfirmDialog(this, "Desea borrar la Materia?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(x== JOptionPane.YES_OPTION){
+                md.borrarMateria(m);
+                borraFilasTabla();
+                cargaDatosInscriptas();
+            }
+        }
+    }//GEN-LAST:event_jButtonborrarActionPerformed
+
+    private void armaCabeceraTabla(){
            //Titulos de Columnas
         ArrayList<Object> columnas=new ArrayList<Object>();
         columnas.add("ID");
@@ -193,7 +222,7 @@ public class MateriaGuardar extends javax.swing.JInternalFrame {
         }
         jTableGuardarMateria.setModel(modelo);
   }
-public void borraFilasTabla(){
+    private void borraFilasTabla(){
 
         int a =modelo.getRowCount()-1;
 
@@ -202,7 +231,7 @@ public void borraFilasTabla(){
                 modelo.removeRow(i);
            }
 }
-public void cargaDatosInscriptas(){
+    private void cargaDatosInscriptas(){
     
         borraFilasTabla();
            //Llenar filas
@@ -219,6 +248,7 @@ public void cargaDatosInscriptas(){
     private javax.swing.JLabel JLabelNombre;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButtonborrar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableGuardarMateria;
     private javax.swing.JTextField jTextFieldNombre;

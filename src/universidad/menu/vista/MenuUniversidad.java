@@ -41,9 +41,9 @@ public class MenuUniversidad extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuGuardarMateria = new javax.swing.JMenuItem();
+        jMenuActualizarMateria = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
@@ -54,7 +54,7 @@ public class MenuUniversidad extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1022, Short.MAX_VALUE)
+            .addGap(0, 1019, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,6 +82,14 @@ public class MenuUniversidad extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuGuardarMateria);
 
+        jMenuActualizarMateria.setText("Actualizar Materia");
+        jMenuActualizarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuActualizarMateriaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuActualizarMateria);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Inscripcion");
@@ -99,19 +107,15 @@ public class MenuUniversidad extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setText("calificar");
-
         jMenuItem3.setText("ingresar calificacion");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem3);
+        jMenu4.add(jMenuItem3);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -167,6 +171,15 @@ public class MenuUniversidad extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu3MouseClicked
 
+    private void jMenuActualizarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuActualizarMateriaActionPerformed
+        MateriaActualizar ma =new MateriaActualizar();
+        escritorio.removeAll();
+        escritorio.repaint();
+        ma.setVisible(true);
+        escritorio.add(ma);
+        escritorio.moveToFront(ma);
+    }//GEN-LAST:event_jMenuActualizarMateriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,7 +221,7 @@ public class MenuUniversidad extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuItem jMenuActualizarMateria;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuGuardarMateria;
     private javax.swing.JMenuItem jMenuItem1;
