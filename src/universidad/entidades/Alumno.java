@@ -16,7 +16,7 @@ public class Alumno {
 
     public Alumno() {
     }
-
+    
     public Alumno(String nombreAlumno, LocalDate fnAlumno, boolean activo) {
         this.nombreAlumno = nombreAlumno;
         this.fnAlumno = fnAlumno;
