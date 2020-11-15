@@ -5,6 +5,7 @@
  */
 package universidad.alumno.vistas;
 
+import java.awt.event.KeyEvent;
 import static java.lang.Integer.parseInt;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -220,6 +221,8 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtfNombreActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea GUARDAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(x==JOptionPane.YES_OPTION){
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         String nombre = jtfNombre.getText();
         String fecha = formato.format(jdcFecha.getDate());
@@ -231,7 +234,7 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
         if(jtfNombre.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "No puede dejar el campo nombre vacio");
         }
-        limpiar();
+        limpiar();}
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
@@ -239,10 +242,11 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-
+        int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea BORRAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(x==JOptionPane.YES_OPTION){
         int id = Integer.parseInt(jtfId.getText());
         alumnoData.borrarAlumno(id);
-        limpiar();
+        limpiar();}
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -258,6 +262,8 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
+        int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea ACTUALIZAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(x==JOptionPane.YES_OPTION){
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         if(jtfId.getText()!=null){
         String nombre = jtfNombre.getText();
@@ -268,14 +274,14 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
         Alumno alumno = new Alumno(Integer.parseInt(jtfId.getText()),nombre, fecNac, activo);
         alumnoData.actualizarAlumno(alumno);
         jtfId.setText(alumno.getIdAlumno()+"");
-        limpiar();
+        limpiar();}
         
         }          
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jtfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreKeyTyped
-        char digito = evt.getKeyChar();
-        if(!Character.isLetter(digito)){//isLetter comprueba si es una letra devuelve true o false
+        
+        if(!(evt.getKeyChar()==KeyEvent.VK_BACK_SPACE)&&!Character.isLetter(evt.getKeyChar())&&!(evt.getKeyChar()==KeyEvent.VK_SPACE)){//isLetter comprueba si es una letra devuelve true o false
         evt.consume();
         }
     }//GEN-LAST:event_jtfNombreKeyTyped
