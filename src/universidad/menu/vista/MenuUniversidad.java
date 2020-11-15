@@ -6,6 +6,7 @@
 package universidad.menu.vista;
 
 import javax.swing.JFrame;
+import universidad.alumno.vistas.VistaAlumnos;
 import universidad.inscripcion.vistas.*;
 import universidad.materia.vistas.*;
 
@@ -37,14 +38,14 @@ public class MenuUniversidad extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuGuardarMateria = new javax.swing.JMenuItem();
         jMenuActualizarMateria = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -60,12 +61,6 @@ public class MenuUniversidad extends javax.swing.JFrame {
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 597, Short.MAX_VALUE)
         );
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Alumnos");
-        jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Materia");
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,6 +111,24 @@ public class MenuUniversidad extends javax.swing.JFrame {
         jMenu4.add(jMenuItem3);
 
         jMenuBar1.add(jMenu4);
+
+        jMenu6.setText("Alumno");
+        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu6ActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("Menu Alumno");
+        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jRadioButtonMenuItem1);
+
+        jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
 
@@ -180,6 +193,21 @@ public class MenuUniversidad extends javax.swing.JFrame {
         escritorio.moveToFront(ma);
     }//GEN-LAST:event_jMenuActualizarMateriaActionPerformed
 
+    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenu6ActionPerformed
+
+    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
+        VistaAlumnos av =new VistaAlumnos();
+        escritorio.removeAll();
+        escritorio.repaint();
+        av.setVisible(true);
+        escritorio.add(av);
+        escritorio.moveToFront(av);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,15 +245,15 @@ public class MenuUniversidad extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuItem jMenuActualizarMateria;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuGuardarMateria;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     // End of variables declaration//GEN-END:variables
 }
