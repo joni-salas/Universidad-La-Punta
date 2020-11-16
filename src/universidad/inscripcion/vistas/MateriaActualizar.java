@@ -99,6 +99,11 @@ public class MateriaActualizar extends javax.swing.JInternalFrame {
                 jTextFieldNombreActionPerformed(evt);
             }
         });
+        jTextFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNombreKeyTyped(evt);
+            }
+        });
 
         jButtonbuscar.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jButtonbuscar.setText("Buscar");
@@ -165,10 +170,11 @@ public class MateriaActualizar extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonaguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCargarMaterias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonCargarMaterias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonaguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(11, 11, 11))
         );
 
@@ -181,13 +187,24 @@ public class MateriaActualizar extends javax.swing.JInternalFrame {
 
     private void jButtonbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonbuscarActionPerformed
 
-        int x= Integer.parseInt(jTextFieldNombre.getText());
-        m=new Materia();
-        m=md.buscarMateria(x);
-        borraFilasTabla();
+    boolean esta=true;
+  
+        if(jTextFieldNombre.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo esta vacio : "+jTextFieldNombre.getText(), "ERROR!", JOptionPane.WARNING_MESSAGE);
+                esta=false;
+        } 
         
-        modelo.addRow(new Object[]{m.getIdMateria(),m.getNombreMateria()});
-        jTextFieldNombre.setText("");
+        if(esta){
+            int x= Integer.parseInt(jTextFieldNombre.getText());
+            m=new Materia();
+            m=md.buscarMateria(x);
+            if (m != null) {
+            borraFilasTabla();
+            modelo.addRow(new Object[]{m.getIdMateria(),m.getNombreMateria()});
+            jTextFieldNombre.setText("");    
+        } 
+        }
+        
     }//GEN-LAST:event_jButtonbuscarActionPerformed
 
     private void jButtonsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsalirActionPerformed
@@ -220,6 +237,14 @@ public class MateriaActualizar extends javax.swing.JInternalFrame {
     private void jTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTableFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableFocusGained
+
+    private void jTextFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreKeyTyped
+        char digito = evt.getKeyChar();
+        if(!Character.isDigit(digito)){
+        evt.consume();
+            
+        }
+    }//GEN-LAST:event_jTextFieldNombreKeyTyped
 
     private void armaCabeceraTabla(){
            //Titulos de Columnas

@@ -27,6 +27,8 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
      */
     public VistaAlumnos() {
         initComponents();
+        
+        this.setLocation(310, 50);
         conexion = new Conexion();
         alumnoData = new AlumnoData(conexion);
         jdcFecha.getDateEditor().setEnabled(false);
@@ -116,6 +118,11 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
 
         jlId.setText("ID");
 
+        jtfId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfIdActionPerformed(evt);
+            }
+        });
         jtfId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfIdKeyTyped(evt);
@@ -250,15 +257,25 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        int id = Integer.parseInt(jtfId.getText());
-        Alumno alumno = alumnoData.buscarAlumno(id);
-        if (alumno != null) {
+        
+        boolean esta=true;
+  
+        if(jtfId.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo esta vacio : "+jtfId.getText(), "ERROR!", JOptionPane.WARNING_MESSAGE);
+                esta=false;
+        }
+        if(esta){
+            int id = Integer.parseInt(jtfId.getText());
+            Alumno alumno = alumnoData.buscarAlumno(id);
+            if (alumno != null) {
             
             jtfId.setText(alumno.getIdAlumno() + "");
             jtfNombre.setText(alumno.getNombreAlumno());
             jdcFecha.setDate(Date.valueOf(alumno.getFnAlumno()));
             jcbEstado.setSelected(alumno.isActivo());
+        } 
         }
+        
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
@@ -292,6 +309,10 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
         evt.consume();//consume el evento no me deja ingresar
         }
     }//GEN-LAST:event_jtfIdKeyTyped
+
+    private void jtfIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfIdActionPerformed
 
     public void limpiar() {
         jtfId.setText("");
