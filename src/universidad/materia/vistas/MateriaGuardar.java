@@ -23,7 +23,6 @@ public class MateriaGuardar extends javax.swing.JInternalFrame {
     public MateriaGuardar() {
         initComponents();
         md= new MateriaData(c);
-        initComponents();
         this.setLocation(450, 100);
         Conexion c = new Conexion();
         armaCabeceraTabla();

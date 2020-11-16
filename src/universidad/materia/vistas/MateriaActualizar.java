@@ -28,9 +28,7 @@ public class MateriaActualizar extends javax.swing.JInternalFrame {
     
     public MateriaActualizar() {
         initComponents();
-        initComponents();
         md= new MateriaData(c);
-        initComponents();
         this.setLocation(450, 100);
         Conexion c = new Conexion();
         armaCabeceraTabla();
