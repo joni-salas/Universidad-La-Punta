@@ -228,32 +228,49 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtfNombreActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea GUARDAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(x==JOptionPane.YES_OPTION){
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-        String nombre = jtfNombre.getText();
-        String fecha = formato.format(jdcFecha.getDate());
-        LocalDate fecNac = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        boolean activo = jcbEstado.isSelected();
-        Alumno alumno = new Alumno(nombre, fecNac, activo);
-        alumnoData.guardarAlumno(alumno);
-        jtfId.setText(alumno.getIdAlumno() + " ");
+        boolean esta=true;
+  
         if(jtfNombre.getText().isEmpty()){
-        JOptionPane.showMessageDialog(this, "No puede dejar el campo nombre vacio");
-        }
+                JOptionPane.showMessageDialog(null, "El campo Nombre esta vacio "+jtfNombre.getText(), "ERROR!", JOptionPane.WARNING_MESSAGE);
+                esta=false;
+        } 
+        if(esta){
+        int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea GUARDAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(x==JOptionPane.YES_OPTION){
+            SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+            String nombre = jtfNombre.getText();
+            String fecha = formato.format(jdcFecha.getDate());
+            LocalDate fecNac = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            boolean activo = jcbEstado.isSelected();
+            Alumno alumno = new Alumno(nombre, fecNac, activo);
+            alumnoData.guardarAlumno(alumno);
+            jtfId.setText(alumno.getIdAlumno() + " ");
+                if(jtfNombre.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "No puede dejar el campo nombre vacio");
+                }
         limpiar();}
+        }
     }//GEN-LAST:event_jbGuardarActionPerformed
-
+  
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         limpiar();
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-        int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea BORRAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(x==JOptionPane.YES_OPTION){
-        int id = Integer.parseInt(jtfId.getText());
-        alumnoData.borrarAlumno(id);
-        limpiar();}
+        boolean esta=true;
+  
+        if(jtfId.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo ID esta vacio "+jtfNombre.getText(), "ERROR!", JOptionPane.WARNING_MESSAGE);
+                esta=false;
+        }
+        if(esta){
+            int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea BORRAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                if(x==JOptionPane.YES_OPTION){
+                    int id = Integer.parseInt(jtfId.getText());
+                    alumnoData.borrarAlumno(id);
+                    limpiar();}
+        }
+        
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -279,19 +296,27 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
-        int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea ACTUALIZAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(x==JOptionPane.YES_OPTION){
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-        if(jtfId.getText()!=null){
-        String nombre = jtfNombre.getText();
-        String fecha = formato.format(jdcFecha.getDate());
-        LocalDate fecNac = LocalDate.parse(fecha,DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        boolean activo = jcbEstado.isSelected();
+        boolean esta=true;
+        if(jtfNombre.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo esta vacio ID esta vacio "+jtfNombre.getText(), "ERROR!", JOptionPane.WARNING_MESSAGE);
+                esta=false;
+        }
+        if(esta){
+            int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea ACTUALIZAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(x==JOptionPane.YES_OPTION){
+                SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+                if(jtfId.getText()!=null){
+                String nombre = jtfNombre.getText();
+                String fecha = formato.format(jdcFecha.getDate());
+                LocalDate fecNac = LocalDate.parse(fecha,DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                boolean activo = jcbEstado.isSelected();
+
+                Alumno alumno = new Alumno(Integer.parseInt(jtfId.getText()),nombre, fecNac, activo);
+                alumnoData.actualizarAlumno(alumno);
+                jtfId.setText(alumno.getIdAlumno()+"");
+                limpiar();} 
+            }
         
-        Alumno alumno = new Alumno(Integer.parseInt(jtfId.getText()),nombre, fecNac, activo);
-        alumnoData.actualizarAlumno(alumno);
-        jtfId.setText(alumno.getIdAlumno()+"");
-        limpiar();}
         
         }          
     }//GEN-LAST:event_jbActualizarActionPerformed

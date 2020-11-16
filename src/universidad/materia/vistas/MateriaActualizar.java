@@ -1,9 +1,11 @@
+package universidad.materia.vistas;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package universidad.inscripcion.vistas;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -190,7 +192,7 @@ public class MateriaActualizar extends javax.swing.JInternalFrame {
     boolean esta=true;
   
         if(jTextFieldNombre.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "El campo esta vacio : "+jTextFieldNombre.getText(), "ERROR!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El campo Nombre esta vacio: "+jTextFieldNombre.getText(), "ERROR!", JOptionPane.WARNING_MESSAGE);
                 esta=false;
         } 
         

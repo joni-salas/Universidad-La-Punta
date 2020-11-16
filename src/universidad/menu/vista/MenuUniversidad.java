@@ -5,6 +5,7 @@
  */
 package universidad.menu.vista;
 
+import universidad.materia.vistas.MateriaActualizar;
 import javax.swing.JFrame;
 import universidad.alumno.vistas.VistaAlumnos;
 import universidad.inscripcion.vistas.*;
@@ -149,7 +150,7 @@ public class MenuUniversidad extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         InscripcionGuardar ig=new InscripcionGuardar();
-              escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
         ig.setVisible(true);
         escritorio.add(ig);
