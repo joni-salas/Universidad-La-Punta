@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import universidad.entidades.Alumno;
 import universidad.modelo.AlumnoData;
 import universidad.modelo.Conexion;
+import universidad.modelo.InscripcionData;
 
 public class VistaAlumnos extends javax.swing.JInternalFrame {
 
@@ -27,7 +28,6 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
      */
     public VistaAlumnos() {
         initComponents();
-        
         this.setLocation(310, 50);
         conexion = new Conexion();
         alumnoData = new AlumnoData(conexion);
@@ -265,10 +265,18 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
         }
         if(esta){
             int x=JOptionPane.showConfirmDialog(this, "Esta seguro que desea BORRAR el alumno?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(x==JOptionPane.YES_OPTION){
+                if(x==JOptionPane.YES_OPTION){   
                     int id = Integer.parseInt(jtfId.getText());
-                    alumnoData.borrarAlumno(id);
-                    limpiar();}
+                    InscripcionData md=new InscripcionData(conexion);
+                    md.buscarInscripcionXAlumno(id);
+                    if(md.buscarInscripcionXAlumno(id).size()>0){
+                        JOptionPane.showMessageDialog(this, "No puede eliminar el alumno, primero debe desincribirlo");
+                    }else{
+                      alumnoData.borrarAlumno(id);
+                        limpiar();  
+                    }
+                    
+                }
         }
         
     }//GEN-LAST:event_jbBorrarActionPerformed

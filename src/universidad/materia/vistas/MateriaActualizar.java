@@ -202,7 +202,9 @@ public class MateriaActualizar extends javax.swing.JInternalFrame {
             borraFilasTabla();
             modelo.addRow(new Object[]{m.getIdMateria(),m.getNombreMateria()});
             jTextFieldNombre.setText("");    
-        } 
+            }else{
+               JOptionPane.showMessageDialog(null, "Materia no encontrada: "+jTextFieldNombre.getText(), "ERROR!", JOptionPane.WARNING_MESSAGE); 
+            }     
         }
         
     }//GEN-LAST:event_jButtonbuscarActionPerformed

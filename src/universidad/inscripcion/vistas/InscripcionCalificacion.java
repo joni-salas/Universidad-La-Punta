@@ -74,6 +74,11 @@ public class InscripcionCalificacion extends javax.swing.JInternalFrame {
             }
         ));
         jtabla.getTableHeader().setReorderingAllowed(false);
+        jtabla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtablaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtabla);
 
         jbGuardar.setText("Guardar Cambios");
@@ -141,15 +146,20 @@ public class InscripcionCalificacion extends javax.swing.JInternalFrame {
             int idInscripcion=(Integer) modelo.getValueAt(filaSeleccionada, 0);
             Materia m=(Materia) modelo.getValueAt(filaSeleccionada, 1);
             double nota=Double.valueOf(modelo.getValueAt(filaSeleccionada, 2).toString());
-            int x =JOptionPane.showConfirmDialog(this, "Desea cambiar la nota?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-            if(x== JOptionPane.YES_OPTION){
-                Inscripcion i;
-                i = id.buscarInscripcion(idInscripcion);
-                i.setNota(nota);
-                id.actualizarInscripcion(i);
-                borraFilasTabla();
-                cargaDatos();
-           }
+            if(nota<=10 && nota>0){
+               int x =JOptionPane.showConfirmDialog(this, "Desea cambiar la nota?","ATENCION!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                    if(x== JOptionPane.YES_OPTION){
+                    Inscripcion i;
+                    i = id.buscarInscripcion(idInscripcion);
+                    i.setNota(nota);
+                    id.actualizarInscripcion(i);
+                    borraFilasTabla();
+                    cargaDatos();
+                    } 
+            }else{
+                JOptionPane.showMessageDialog(this, "La nota debe ser 10 o menor");
+            }
+            
         }
         
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -163,6 +173,14 @@ public class InscripcionCalificacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jtablaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtablaKeyTyped
+        char digito = evt.getKeyChar();
+        if(!Character.isDigit(digito)){
+        evt.consume();
+            
+        }
+    }//GEN-LAST:event_jtablaKeyTyped
 public void armaCabeceraTabla(){
            //Titulos de Columnas
         ArrayList<Object> columnas=new ArrayList<Object>();
